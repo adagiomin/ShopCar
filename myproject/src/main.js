@@ -27,7 +27,7 @@ import './assets/styles/index.css'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 // 配置请求的数据接口根域名
-Vue.http.options.root = 'http://127.0.0.1:3000/'
+// Vue.http.options.root = 'http://127.0.0.1:3000/'   //3/19服务器前端合二为一后，不需要该句话了
 //全局启用emulateJSON选项,post时就不需要再设置emulateJson
 Vue.http.options.emulateJson = true
 

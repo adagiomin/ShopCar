@@ -37,3 +37,23 @@
   - 运行
   
     `npm run dev`
+
+
+## 修改
+
+将服务器与前端合二为一
+
+config/index.js中修改：
+
+```javascript
+    proxyTable: { 
+      '/': {
+        target: 'http://localhost:3000/',
+      }
+    },
+```
+
+index.js中删除原来的
+
+`Vue.http.options.root = 'http://127.0.0.1:3000/'`
+
