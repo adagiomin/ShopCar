@@ -10,7 +10,7 @@ app.use(bodyParser.json())
 app.use('/public/',express.static('./public'))
 app.use('/node_modules/',express.static('./node_modules'))
 
-//配置完成，使用路由
+//CORS跨资源共享
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "http://localhost:8080");
     res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");

@@ -2,19 +2,20 @@ import Vue from 'vue'
 import App from './App'
 
 // 样式重置
-// import './assets/styles/reset.css'
-import './assets/styles/border.css'
+// import './assets/styles/reset.css'    //移动端样式重置，将不同的手机的初始化样式做一个统一
+import './assets/styles/border.css'   //解决分辨率较高的移动端1像素边框被显示成多倍像素
 
-// fastClick
+// fastClick  解决在某些机型中使用click会延迟3s进行
 import fastClick from 'fastclick'
 Vue.config.productionTip = false
 fastClick.attach(document.body)
 
-// MinUI
-// 顶部Header区域用到
-import MintUI from 'mint-ui'
+// Mint-UI
+import { Header,Button,Switch} from 'mint-ui';
+Vue.component(Header.name, Header);   //App.vue顶部用到
+Vue.component(Button.name, Button);   //App.vue顶部返回按钮用到
+Vue.component(Switch.name, Switch);   //购物车页开关用到
 import 'mint-ui/lib/style.css'
-Vue.use(MintUI)
 
 // mui
 import './assets/lib/mui/css/mui.css'
@@ -22,16 +23,16 @@ import './assets/lib/mui/fonts/mui-icons-extra.ttf'
 import './assets/lib/mui/css/icons-extra.css'
 import './assets/styles/index.css'
 
-import router from './router'
-
 // VueResource
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
+// 配置请求的数据接口根域名
 Vue.http.options.root = 'http://127.0.0.1:3000/'
+//全局启用emulateJSON选项,post时就不需要再设置emulateJson
 Vue.http.options.emulateJson = true
 
-// 过滤器
-import moment from 'moment'
+// 过滤器 - 使用moment库对时间进行处理
+import moment from 'moment'   //日期处理类库
 Vue.filter('dateFormat', function (dataStr, pattern = "YYYY-MM-DD HH:mm:ss") {
   return moment(dataStr).format(pattern)
 })
@@ -138,6 +139,8 @@ const store = new Vuex.Store({
     }
   }
 })
+
+import router from './router'
 
 new Vue({
   el: '#app',

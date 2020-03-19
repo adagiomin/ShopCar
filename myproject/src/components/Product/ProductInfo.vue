@@ -47,14 +47,14 @@ export default {
     this.getProList();
   },
   methods: {
+    getSelectedCount(msg) {  //获取子组件当前值
+      this.selectedCount = msg;
+    },
     getProList() {
       var url = `shopCar/prodlist?id=${this.id}`;
       this.$http.get(url).then(result => {
         this.prodInfo = result.body[0];
       });
-    },
-    getSelectedCount(msg) {
-      this.selectedCount = msg;
     },
     addToShopCar() {
       this.ballFlag = !this.ballFlag;

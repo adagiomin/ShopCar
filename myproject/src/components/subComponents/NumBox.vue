@@ -16,18 +16,17 @@
 <script>
 import mui from "../../assets/lib/mui/js/mui.js";
 export default {
-  mounted() {
-    //实例挂载于Dom上（可处理业务逻辑）
+  mounted() {//mounted阶段，实例挂载于Dom上（可处理业务逻辑）
     mui(".mui-numbox").numbox(); // 初始化数字选择框组件
   },
   methods: {
-    countChanged() {   //已选数量改变，告知父元素
+    countChanged() {   //子向父传值，父@getcount="getSelectedCount"
       this.$emit("getcount", parseInt(this.$refs.numbox.value));
     }
   },
-  props: ["max"],       //父组件传可选数量上限
-  watch: {
-    max: function(newVal, oldVal) {
+  props: ["max"],     //父向子传值，父:max="prodInfo.stock_quantity"
+  watch: {  //监听max，设置上限
+    max: function(newVal, oldVal) { 
       mui(".mui-numbox")
         .numbox()
         .setOption("max", newVal);

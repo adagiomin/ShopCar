@@ -4,12 +4,12 @@ var Products = {
 	getList(id, callback) {
 		if (id) {
 			if (id.length > 1) {   //取多个
-				sql = `SELECT * from vue_goods_list where id in (${id})`
+				sql = `SELECT * from prods_list where id in (${id})`
 			} else {   //取1个
-				sql = `SELECT * from vue_goods_list where id=${id}`
+				sql = `SELECT * from prods_list where id=${id}`
 			}
 		} else {   //取全部
-			sql = 'SELECT * from vue_goods_list'
+			sql = 'SELECT * from prods_list'
 		}
 		query(sql, function (qerr, vals, fields) {
 			if (vals) {
