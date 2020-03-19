@@ -11,7 +11,7 @@ Vue.config.productionTip = false
 fastClick.attach(document.body)
 
 // Mint-UI
-import { Header,Button,Switch} from 'mint-ui';
+import { Header, Button, Switch } from 'mint-ui';
 Vue.component(Header.name, Header);   //App.vue顶部用到
 Vue.component(Button.name, Button);   //App.vue顶部返回按钮用到
 Vue.component(Switch.name, Switch);   //购物车页开关用到
@@ -51,8 +51,8 @@ const store = new Vuex.Store({
     //   selected:,
     // };
   },
-  mutations: { //this.$store.commit('方法的名称', '按需传递唯一的参数')
-    // 商品页面中
+  mutations: { //this.$store.commit('方法名', '唯一的参数')
+    // 商品页面'加入购物车'操作
     addToCar(state, product) {
       //判断是否已存在
       var flag = false
@@ -70,23 +70,7 @@ const store = new Vuex.Store({
       //更新本地的localStorage
       localStorage.setItem('car', JSON.stringify(state.car))
     },
-    // 购物车中
-    updateProdsSelected(state, info) {
-      state.car.some(item => {
-        if (item.id == info.id) {
-          item.selected = info.selected
-        }
-      })
-      localStorage.setItem('car', JSON.stringify(state.car))
-    },
-    updateprodsInfo(state, info) {
-      state.car.some(item => {
-        if (item.id == info.id) {
-          item.count = info.count
-        }
-      })
-      localStorage.setItem('car', JSON.stringify(state.car))
-    },
+    //购物车界面删除商品
     removeFormCar(state, id) {
       // 根据Id，从store 中的购物车中删除对应的那条商品数据
       state.car.some((item, i) => {
@@ -97,18 +81,29 @@ const store = new Vuex.Store({
       })
       // 将删除完毕后的，最新的购物车数据，同步到 本地存储中
       localStorage.setItem('car', JSON.stringify(state.car))
-    }
-  },
-  getters: {   // this.$store.getters.***
-    //购物车中
-    getProdsCount(state) {           //得到购物车种各个商品的数量
-      var o = []
-      state.car.forEach(item => {
-        o[item.id] = item.count
-      })
-      return o
     },
-    getProdsSelectedCount(state) {  //得到购物车中已选择的商品总量
+    // 购物车中更新商品的选中状态
+    updateProdsSelected(state, info) {
+      state.car.some(item => {
+        if (item.id == info.id) {
+          item.selected = info.selected
+        }
+      })
+      localStorage.setItem('car', JSON.stringify(state.car))
+    },
+    //购物车种更新商品的购买数量
+    updateprodsInfo(state, info) {
+      state.car.some(item => {
+        if (item.id == info.id) {
+          item.count = info.count
+        }
+      })
+      localStorage.setItem('car', JSON.stringify(state.car))
+    },
+  },
+  getters: {   // this.$store.getters.方法名
+    //得到购物车中已选择的商品总量，用于在底部购物车图标上方的小红圈中显示
+    getProdsSelectedCount(state) {
       var count = 0;
       state.car.forEach(item => {
         if (item.selected) {
@@ -117,13 +112,25 @@ const store = new Vuex.Store({
       })
       return count
     },
-    getProdsSelected(state) {    //得到商品选择与否信息
+    //得到购物车种各个商品的数量，用于在购物车界面numbox中显示商品当前购买数量
+    //返回数组，根据商品id来获取其数购买量$store.getters.getProdsCount[item.id]
+    getProdsCount(state) {
+      var o = []
+      state.car.forEach(item => {
+        o[item.id] = item.count
+      })
+      return o
+    },
+    //得到购物车种各个商品的选择状态，用于在购物车界面设置商品的选中状态
+    //返回数组，根据商品id来获取其选中状态$store.getters.getProdsSelected[item.id]
+    getProdsSelected(state) {
       var o = []
       state.car.forEach(item => {
         o[item.id] = item.selected
       })
       return o
     },
+    //得到购物车总的选择数量和总价，用于在结算框中显示
     getGoodsCountAndAmount(state) {
       var o = {
         count: 0, // 勾选的数量
