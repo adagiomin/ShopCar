@@ -33,7 +33,6 @@ export default {
     getProList() {
       this.$http.get("shopCar/prodlist").then(result => {
         this.prodList = result.body;
-        console.log(this.prodList)
       });
     },
     goDetail(id) {
