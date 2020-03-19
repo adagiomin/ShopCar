@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import numbox from "../subComponents/NumBox.vue";
+import numbox from "./subComponents/NumBox.vue";
 export default {
   data: function() {
     return {

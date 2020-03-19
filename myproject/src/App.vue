@@ -14,12 +14,6 @@
 
     <!-- 底部 -->
     <nav class="mui-bar mui-bar-tab">
-      <router-link class="mui-tab-item-llb" to="/home">
-        <!-- <a class="mui-tab-item" @click.prevent="link1"> -->
-        <span class="mui-icon mui-icon-home"></span>
-        <span class="mui-tab-label">首页</span>
-        <!-- </a> -->
-      </router-link>
       <router-link class="mui-tab-item-llb" to="/products">
         <!-- <a class="mui-tab-item" @click.prevent="link2"> -->
         <span class="mui-icon mui-icon-list"></span>
@@ -55,9 +49,6 @@ export default {
       this.$store.getters.getProdsSelectedCount === 0 ? "hidden" : "visible";
   },
   methods: {
-    // link1() {
-    //   this.$router.push("/home");
-    // },
     // link2() {
     //   this.$router.push("/products");
     // },

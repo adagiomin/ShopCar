@@ -10,18 +10,12 @@ Router.prototype.push = function push(location, onResolve, onReject) {
 }
 
 import Products from '@/components/Products'   //@表示src(webpack.base.config.js中设置)
-import ProductInfo from '@/components/Product/ProductInfo'
+import ProductInfo from '@/components/ProductInfo'
 import ShopCar from '@/components/ShopCar'
-import Home from '@/components/Home'
 
 export default new Router({
   routes: [
-    { path: '/', redirect: '/home', component: Home },
-    {
-      path: '/home',
-      name: 'Home',
-      component: Home
-    },
+    { path: '/', redirect: '/products', component: Products },
     {
       path: '/products',
       name: 'Products',
