@@ -34,6 +34,7 @@
 
 <script>
 import numbox from "./subComponents/NumBox.vue";
+import axios from 'axios'
 export default {
   data: function() {
     return {
@@ -52,8 +53,8 @@ export default {
     },
     getProList() {
       var url = `shopCar/prodlist?id=${this.id}`;
-      this.$http.get(url).then(result => {
-        this.prodInfo = result.body[0];
+      axios.get(url).then(result => {
+        this.prodInfo = result.data[0];
       });
     },
     addToShopCar() {

@@ -24,12 +24,12 @@ import './assets/lib/mui/css/icons-extra.css'
 import './assets/styles/index.css'
 
 // VueResource
-import VueResource from 'vue-resource'
-Vue.use(VueResource)
-// 配置请求的数据接口根域名
-// Vue.http.options.root = 'http://127.0.0.1:3000/'   //3/19服务器前端合二为一后，不需要该句话了
-//全局启用emulateJSON选项,post时就不需要再设置emulateJson
-Vue.http.options.emulateJson = true
+// import VueResource from 'vue-resource'
+// Vue.use(VueResource)
+// // 配置请求的数据接口根域名
+// // Vue.http.options.root = 'http://127.0.0.1:3000/'   //3/19服务器前端合二为一后，不需要该句话了
+// //全局启用emulateJSON选项,post时就不需要再设置emulateJson
+// Vue.http.options.emulateJson = true
 
 // 过滤器 - 使用moment库对时间进行处理
 import moment from 'moment'   //日期处理类库

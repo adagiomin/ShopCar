@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data: function() {
     return {
@@ -31,8 +32,9 @@ export default {
   },
   methods: {
     getProList() {
-      this.$http.get("shopCar/prodlist").then(result => {
-        this.prodList = result.body;
+      axios.get("shopCar/prodlist").then(result => {
+        // console.log(result)
+        this.prodList = result.data;
       });
     },
     goDetail(id) {

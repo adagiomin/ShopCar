@@ -48,6 +48,7 @@
 
 <script>
 import numbox from "./subComponents/ShopCarNumBox.vue";
+import axios from "axios";
 export default {
   data() {
     return {
@@ -67,14 +68,14 @@ export default {
         return;
       }
       // 获取购物车商品信息
-      this.$http.get("shopCar/prodlist?id=" + idArr.join(",")).then(result => {
-        this.prodList = result.body;
+      axios.get("shopCar/prodlist?id=" + idArr.join(",")).then(result => {
+        this.prodList = result.data;
       });
     },
     selectedChanged(id, val) {
       this.$store.commit("updateProdsSelected", { id, selected: val });
     },
-    remove(id, index){
+    remove(id, index) {
       // 点击删除，把商品从store中根据传递的Id 删除，
       //同时把当前组件中的 goodslist 中，对应要删除的那个商品，使用 index 来删除
       this.prodList.splice(index, 1);
